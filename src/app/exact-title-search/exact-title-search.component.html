@@ -1,13 +1,30 @@
-<div  *ngIf="movieSearchList1.length == 0">
+<!-- <div  *ngIf="movieSearchList1.length == 0"> -->
+<div id="searchButton">
 <p>Search by Exact Title Name!</p>
 <input #newMovie (keyup.enter)="searchMoviesExact(newMovie.value)" type="text">
-<button id="searchButton"  (click)="searchMoviesExact(newMovie.value)"  class="btn btn-primary" >Submit</button>
+<button (click)="searchMoviesExact(newMovie.value)"  class="btn btn-primary" >Submit</button>
+
 </div>
-<div id="lists" *ngIf="movieSearchList1.length > 0">
+<div id="lists"></div>
+<!-- <div id="lists" *ngIf="movieSearchList1.length > 0">
     <div>
         {{addLists()}}
     </div>
-</div>
+</div> -->
+
+
+
+
+
+
+
+<!-- <div id="lists" *ngIf="movieSearchList1.length > 0">
+    <div *ngFor="let list of movieSearchList1">
+      {{addMovieTitle(list.title)}}
+      {{addReleaseYear(list.releaseYear)}}
+      {{addImages(list.itemUrl)}}
+    </div>
+  </div> -->
 <!-- <ol *ngFor = "let list of movieSearchList1">
     <li id="titles">Title: {{list.title}}</li>
     <li id="releaseYears">Release year: {{list.releaseYear}} {{addImages(list.imageUrl)}}</li>

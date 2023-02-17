@@ -35,6 +35,9 @@ export class ExactTitleSearchComponent implements OnInit {
                this.movieSearchList1.push(movies);
               }
            }
+           this.populateList();
+          let button = document.getElementById("searchButton");
+          button.style.visibility = 'hidden';
         }.bind(this));
       }.bind(this));
 }
@@ -61,13 +64,16 @@ addReleaseYear(releaseYear){
   year.innerHTML = "Year:" + releaseYear;
   document.body.appendChild(year);
 }
-addLists(){
-  for(let i=0; i < this.movieSearchList1.length; i++){
-    this.addMovieTitle(this.movieSearchList1[i].title);
-    this.addReleaseYear(this.movieSearchList1[i].releaseYear);
-    this.addImages(this.movieSearchList1[i].imageUrl);
-    console.log(this.movieSearchList1);
-  }
+addLists(movie){
+    this.addMovieTitle(movie.title);
+    this.addReleaseYear(movie.releaseYear);
+    this.addImages(movie.imageUrl);
+    console.log(movie);
+}
+populateList(){
+   let div = document.getElementById("lists");
+   this.movieSearchList1.forEach(movie => 
+    this.addLists(movie)) 
 }
 
 }
