@@ -1,18 +1,24 @@
 <!-- <div  *ngIf="movieSearchList1.length == 0"> -->
 <div id="searchButton">
-<p>Search by Exact Title Name!</p>
-<input #newMovie (keyup.enter)="searchMoviesExact(newMovie.value)" type="text">
-<button (click)="searchMoviesExact(newMovie.value)"  class="btn btn-primary" >Submit</button>
 
+<!-- <div class="input-group"> -->
+<div class="container">
+    <div class="text-center">
+      <p>Search by Exact Title Name!</p>
+  <input #movieSearch type="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <button (click)="searchMoviesExact(movieSearch.value)" type="button" class="btn btn-outline-primary">Search</button>
 </div>
+</div>
+
 <div id="lists"></div>
+
 <!-- <div id="lists" *ngIf="movieSearchList1.length > 0">
     <div>
         {{addLists()}}
     </div>
 </div> -->
 
-
+</div>
 
 
 

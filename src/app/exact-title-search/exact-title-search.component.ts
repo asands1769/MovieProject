@@ -21,7 +21,7 @@ export class ExactTitleSearchComponent implements OnInit {
           'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
         }
       };
-      let moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${searchValue}?exact=true&startYear=2000&limit=1`
+      let moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${searchValue}?exact=true&startYear=2000&limit=10`
       window.fetch(moviesUrl, options).then(function (response) {
         response.json().then(function (data){
              let rawMovies = data.results
@@ -49,18 +49,18 @@ addImages(image){
     document.body.appendChild(img);
   }
   else{
-    let noImg = document.createElement("div");
+    let noImg = document.createElement("p");
     noImg.innerHTML = 'No Image Available';
     document.body.appendChild(noImg);
   }
 }
 addMovieTitle(movieTitle){
-    let title = document.createElement("div");
+    let title = document.createElement("p");
     title.innerHTML = "Title:" + movieTitle;
     document.body.appendChild(title);
 }
 addReleaseYear(releaseYear){
-  let year = document.createElement("div");
+  let year = document.createElement("p");
   year.innerHTML = "Year:" + releaseYear;
   document.body.appendChild(year);
 }
