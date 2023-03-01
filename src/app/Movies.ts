@@ -2,12 +2,12 @@ export class Movies {
 
 	title: string;
 	releaseYear: string;
-	imageUrl: string;
+	rating: number;
 
-	constructor(title: string, releaseYear: string, imageUrl: string) {
+	constructor(title: string, releaseYear: string, rating: number) {
 		this.title = title;
 		this.releaseYear = releaseYear;
-		this.imageUrl = imageUrl;
+		this.rating = rating;
    }
 	
 

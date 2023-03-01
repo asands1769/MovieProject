@@ -1,18 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Movies } from '../movies';
-
+import { QuizMovies } from '../QuizMovies';
 @Component({
   selector: 'app-movie-quiz',
   templateUrl: './movie-quiz.component.html',
   styleUrls: ['./movie-quiz.component.css']
 })
 export class MovieQuizComponent implements OnInit {
+  questionNumber: number;
+  quizScore: number;
+  movieQuestions: QuizMovies[];
+  movieQuizList: QuizMovies[];
+  randomSelector: number;
+  optionsSelected: number;
+  testFinished: boolean;
 
-  movieSearchList2: Movies[];
   constructor() {
-    this.movieSearchList2 = [];
+    this.movieQuizList = [];
+    this.movieQuestions = [];
+    this.questionNumber = 0;
+    this.testFinished = false;
+    this.quizScore = 0;
    }
-  
+
   ngOnInit(): void {
   }
   getTopRatedMovies(){
@@ -25,14 +34,84 @@ export class MovieQuizComponent implements OnInit {
         'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
       }
     };
+    let moviesUrl = 'https://imdb-top-100-movies.p.rapidapi.com/'
+    window.fetch(moviesUrl, options).then(function (response) {
+      response.json().then(function (data){
+          console.log(data);
+           let rawMovies = data;
+           for(let i=0; i < rawMovies.length; i++){
+             let movies = new QuizMovies(rawMovies[i].title, rawMovies[i].description, rawMovies[i].director);
+             this.movieQuizList.push(movies);
+         }
+         console.log(this.movieQuizList)
+         this.getQuizQuestions();
+      }.bind(this));
+    }.bind(this));
+      
+}
+getQuizQuestions(){  
+    if(this.movieQuestions.length == 0){
+    for(let i=0; i < 10; i++){
+      let randomNumber = Math.floor(Math.random()*90);
+      this.movieQuestions.push(this.movieQuizList[randomNumber]);
+      this.movieQuizList.splice(randomNumber, 1);
+    }
+    console.log(this.movieQuizList);
+    console.log(this.movieQuestions);
+    }
+    this.populateQuizQuestions();
+}
+populateQuizQuestions(){
+  document.getElementById("startButton").style.visibility = "hidden";
+  let answer0 = document.getElementById("answer0");
+  let answer1 = document.getElementById("answer1");
+  let answer2 = document.getElementById("answer2");
+  let answer3 = document.getElementById("answer3");
+  let question = document.getElementById("Question");
+  answer0.style.width = "800px";
+  answer1.style.width = "800px";
+  answer2.style.width = "800px";
+  answer3.style.width = "800px";
+  answer0.style.visibility = "visible";
+  answer1.style.visibility = "visible";
+  answer2.style.visibility = "visible";
+  answer3.style.visibility = "visible";
+  this.randomSelector = Math.floor(Math.random()*4)
+  question.innerHTML = "Which of the following movies match this description: \n" + this.movieQuestions[this.questionNumber].description;
+  answer0.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
+  answer1.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
+  answer2.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
+  answer3.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
+  document.getElementById("answer" + this.randomSelector).innerHTML = this.movieQuestions[this.questionNumber].title;
+  this.questionNumber++;
+}
+gradeQuizQuestions(){
+  if(this.randomSelector == this.optionsSelected){
+         this.quizScore++;
+     }
+  if(this.questionNumber >= 10){
+        this.testFinished = true;
+     }
+     else{
+      this.populateQuizQuestions();
+     }
     
-    fetch('https://imdb-top-100-movies.p.rapidapi.com/', options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
-}
-populateQuiz(){
-
 }
 
+clicked1(){
+  this.optionsSelected = 0;
+  this.gradeQuizQuestions();
+}
+clicked2(){
+  this.optionsSelected = 1;
+  this.gradeQuizQuestions();
+}
+clicked3(){
+  this.optionsSelected = 2;
+  this.gradeQuizQuestions();
+}
+clicked4(){
+  this.optionsSelected = 3;
+  this.gradeQuizQuestions();
+}
 }

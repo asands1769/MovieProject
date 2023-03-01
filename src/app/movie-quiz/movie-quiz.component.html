@@ -1,7 +1,35 @@
-<div id="quizButton">
-
-    <!-- <div class="input-group"> -->
-    <div class="container">
-      
-    </div>
-    </div>
+<div id="Quiz" >
+    <div style="text-align: center;">
+      <button id="startButton" (click)="getTopRatedMovies()" class="btn btn-outline-primary">Start!</button>  
+    </div>    
+</div>
+<div *ngIf="!testFinished">
+        <div class="container-md">
+        <p class="Question" id="Question"></p>
+        </div>
+        <body class="body1">
+        <div class="container"> 
+          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked1()" id="answer0" name="box"></button>
+        </div><br>
+        <div class="container">
+          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked2()" id="answer1" name="box"></button>
+        </div><br>
+        <div class="container">
+          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked3()" id="answer2" name="box"></button>
+        </div><br>
+        <div class="container">
+          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked4()" id="answer3" name="box"></button>
+        </div><br>
+      </body>
+      </div>
+    
+<div *ngIf="testFinished"> 
+  <div *ngIf="quizScore >= 6">
+    <h1 style="text-align: center;">Congratulations!</h1> 
+    <p style="text-align: center;"> You passed! You scored {{quizScore}} out of 10! </p>
+  </div> 
+  <div *ngIf="quizScore <= 5">
+    <h1 style="text-align: center;">Sorry!</h1>
+    <p style="text-align: center;">You failed.  You scored {{quizScore}} out of 10! </p>
+  </div>
+</div>

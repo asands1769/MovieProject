@@ -15,63 +15,63 @@ export class ExactTitleSearchComponent implements OnInit {
   }
   searchMoviesExact(searchValue){
     const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': '548b07248emsh548b3fae0f86878p1bfa94jsn06296714d333',
-          'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-        }
-      };
-      let moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${searchValue}?exact=true&startYear=2000&limit=10`
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '548b07248emsh548b3fae0f86878p1bfa94jsn06296714d333',
+        'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+      }
+    };
+      let moviesUrl = `https://mdblist.p.rapidapi.com/?s=${searchValue}`
       window.fetch(moviesUrl, options).then(function (response) {
         response.json().then(function (data){
-             let rawMovies = data.results
+             let rawMovies = data.search;
+             console.log(data);
              for(let i=0; i < rawMovies.length; i++){
-              if(rawMovies[i].primaryImage == null){
-                let movies = new Movies(rawMovies[i].titleText.text, rawMovies[i].releaseYear.year, "Image not available")
+                let movies = new Movies(rawMovies[i].title, rawMovies[i].year, rawMovies[i].score_average)
                 this.movieSearchList1.push(movies);
-              }
-              else{
-               let movies = new Movies(rawMovies[i].titleText.text, rawMovies[i].releaseYear.year, rawMovies[i].primaryImage.url);
-               this.movieSearchList1.push(movies);
-              }
            }
+           console.log(this.movieSearchList1);
            this.populateList();
-          let button = document.getElementById("searchButton");
-          button.style.visibility = 'hidden';
         }.bind(this));
       }.bind(this));
 }
 
-addImages(image){
-  if(image != "Image not available"){
-    let img = document.createElement("img")
-    img.src = image;
-    document.body.appendChild(img);
-  }
-  else{
-    let noImg = document.createElement("p");
-    noImg.innerHTML = 'No Image Available';
-    document.body.appendChild(noImg);
-  }
+addRating(movieRating){
+    let rating = document.createElement("p");
+    let simplifiedRating = movieRating / 10;
+    rating.innerHTML = "IMDb Rating: " + simplifiedRating + "/10"
+    rating.style.textAlign = "center";
+    rating.style.backgroundColor = "yellow;";
+    document.body.appendChild(rating);
 }
 addMovieTitle(movieTitle){
     let title = document.createElement("p");
-    title.innerHTML = "Title:" + movieTitle;
+    title.innerHTML = "Title: " + movieTitle;
+    title.style.fontWeight = "bold";
+    title.style.textDecoration = "underline";
+    title.style.textAlign = "center";
+    title.style.backgroundColor = "yellow;";
     document.body.appendChild(title);
 }
 addReleaseYear(releaseYear){
   let year = document.createElement("p");
   year.innerHTML = "Year:" + releaseYear;
+  year.style.textAlign = "center";
+  year.style.backgroundColor = "yellow;";
   document.body.appendChild(year);
 }
 addLists(movie){
     this.addMovieTitle(movie.title);
     this.addReleaseYear(movie.releaseYear);
-    this.addImages(movie.imageUrl);
-    console.log(movie);
+    this.addRating(movie.rating);
 }
 populateList(){
    let div = document.getElementById("lists");
+   let results = document.createElement("h2");
+   results.innerHTML = "Results: ";
+   results.style.textAlign = "center";
+   results.style.backgroundColor = "green"
+   document.body.appendChild(results);
    this.movieSearchList1.forEach(movie => 
     this.addLists(movie)) 
 }
