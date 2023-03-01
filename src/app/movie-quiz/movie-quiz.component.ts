@@ -10,11 +10,13 @@ export class MovieQuizComponent implements OnInit {
   quizScore: number;
   movieQuestions: QuizMovies[];
   movieQuizList: QuizMovies[];
+  movieQuizListOriginal: QuizMovies[];
   randomSelector: number;
   optionsSelected: number;
   testFinished: boolean;
 
   constructor() {
+    this.movieQuizListOriginal = [];
     this.movieQuizList = [];
     this.movieQuestions = [];
     this.questionNumber = 0;
@@ -43,6 +45,7 @@ export class MovieQuizComponent implements OnInit {
              let movies = new QuizMovies(rawMovies[i].title, rawMovies[i].description, rawMovies[i].director);
              this.movieQuizList.push(movies);
          }
+         this.movieQuizListOriginal = this.movieQuizList;
          console.log(this.movieQuizList)
          this.getQuizQuestions();
       }.bind(this));
@@ -60,6 +63,10 @@ getQuizQuestions(){
     console.log(this.movieQuestions);
     }
     this.populateQuizQuestions();
+}
+getQuizQuestionsPlayAgain(){
+  this.movieQuizList = this.movieQuizListOriginal;
+  this.getQuizQuestions();
 }
 populateQuizQuestions(){
   document.getElementById("startButton").style.visibility = "hidden";
@@ -113,5 +120,12 @@ clicked3(){
 clicked4(){
   this.optionsSelected = 3;
   this.gradeQuizQuestions();
+}
+tryAgain(){
+  this.movieQuestions.length = 0;
+  this.questionNumber = 0;
+  this.quizScore = 0;
+  this.testFinished = false;
+  this.getQuizQuestionsPlayAgain();
 }
 }
