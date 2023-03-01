@@ -8,11 +8,11 @@
 }
 .passed {
     text-align: center;
-    text-decoration-color: rgb(86, 255, 95);
+    color: rgb(86, 255, 95);
     font-weight: bolder;
 }
 .failed{
     text-align: center;
-    text-decoration-color:rgb(255, 34, 34);
+    color:rgb(255, 34, 34);
     font-weight:bolder
 }

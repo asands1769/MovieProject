@@ -9,16 +9,16 @@
         </div>
         <body class="body1">
         <div class="container"> 
-          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked1()" id="answer0" name="box"></button>
+          <button class="btn btn-outline-primary"  (click)="clicked1()" id="answer0" name="box"></button>
         </div><br>
         <div class="container">
-          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked2()" id="answer1" name="box"></button>
+          <button class="btn btn-outline-primary"  (click)="clicked2()" id="answer1" name="box"></button>
         </div><br>
         <div class="container">
-          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked3()" id="answer2" name="box"></button>
+          <button class="btn btn-outline-primary"  (click)="clicked3()" id="answer2" name="box"></button>
         </div><br>
         <div class="container">
-          <button class="btn btn-outline-primary" style="visibility: hidden;" (click)="clicked4()" id="answer3" name="box"></button>
+          <button class="btn btn-outline-primary"  (click)="clicked4()" id="answer3" name="box"></button>
         </div><br>
       </body>
       </div>
@@ -27,11 +27,15 @@
   <div *ngIf="quizScore >= 6">
     <h1 class="passed">Congratulations!</h1> 
     <p class="passed"> You passed! You scored {{quizScore}} out of 10! </p>
-    <button class="btn btn-success" style="text-align: center;" (click)="tryAgain()">Play again?</button>
+    <body style="text-align: center;">
+    <button class="btn btn-success"  (click)="tryAgain()">Play again?</button>
+  </body>
   </div> 
   <div *ngIf="quizScore <= 5">
-    <h1 style="text-align: center;">Sorry!</h1>
-    <p style="text-align: center;">You failed.  You scored {{quizScore}} out of 10! </p>
-    <button class="btn btn-success" style="text-align: center;" (click)="tryAgain()">Try again? </button>
+    <h1 class="failed">Sorry!</h1>
+    <p class="failed">You failed.  You scored {{quizScore}} out of 10! </p>
+    <body style="text-align: center;">
+      <button class="btn btn-danger"  (click)="tryAgain()">Try again?</button>
+    </body>
   </div>
 </ng-template>

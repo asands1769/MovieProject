@@ -47,10 +47,10 @@ export class MovieQuizComponent implements OnInit {
          }
          this.movieQuizListOriginal = this.movieQuizList;
          console.log(this.movieQuizList)
+         console.log(this.movieQuizListOriginal)
          this.getQuizQuestions();
       }.bind(this));
     }.bind(this));
-      
 }
 getQuizQuestions(){  
     if(this.movieQuestions.length == 0){
@@ -64,10 +64,7 @@ getQuizQuestions(){
     }
     this.populateQuizQuestions();
 }
-getQuizQuestionsPlayAgain(){
-  this.movieQuizList = this.movieQuizListOriginal;
-  this.getQuizQuestions();
-}
+
 populateQuizQuestions(){
   document.getElementById("startButton").style.visibility = "hidden";
   let answer0 = document.getElementById("answer0");
@@ -85,10 +82,10 @@ populateQuizQuestions(){
   answer3.style.visibility = "visible";
   this.randomSelector = Math.floor(Math.random()*4)
   question.innerHTML = "Which of the following movies match this description: \n" + this.movieQuestions[this.questionNumber].description;
-  answer0.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
-  answer1.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
-  answer2.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
-  answer3.innerHTML = this.movieQuizList[Math.floor(Math.random()*90)].title;
+  answer0.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
+  answer1.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
+  answer2.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
+  answer3.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
   document.getElementById("answer" + this.randomSelector).innerHTML = this.movieQuestions[this.questionNumber].title;
   this.questionNumber++;
 }
@@ -126,6 +123,10 @@ tryAgain(){
   this.questionNumber = 0;
   this.quizScore = 0;
   this.testFinished = false;
-  this.getQuizQuestionsPlayAgain();
+  this.movieQuizList.length = 0;
+  this.movieQuizListOriginal.length = 0;
+  console.log(this.movieQuizList)
+  console.log(this.movieQuizListOriginal)
+  this.getTopRatedMovies();
 }
 }
