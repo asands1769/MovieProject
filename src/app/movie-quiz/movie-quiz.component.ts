@@ -67,6 +67,7 @@ getQuizQuestions(){
 
 populateQuizQuestions(){
   document.getElementById("startButton").style.visibility = "hidden";
+  document.getElementById("buttons").style.visibility = "visible";
   let answer0 = document.getElementById("answer0");
   let answer1 = document.getElementById("answer1");
   let answer2 = document.getElementById("answer2");
@@ -76,10 +77,6 @@ populateQuizQuestions(){
   answer1.style.width = "800px";
   answer2.style.width = "800px";
   answer3.style.width = "800px";
-  answer0.style.visibility = "visible";
-  answer1.style.visibility = "visible";
-  answer2.style.visibility = "visible";
-  answer3.style.visibility = "visible";
   this.randomSelector = Math.floor(Math.random()*4)
   question.innerHTML = "Which of the following movies match this description: \n" + this.movieQuestions[this.questionNumber].description;
   answer0.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
@@ -125,8 +122,6 @@ tryAgain(){
   this.testFinished = false;
   this.movieQuizList.length = 0;
   this.movieQuizListOriginal.length = 0;
-  console.log(this.movieQuizList)
-  console.log(this.movieQuizListOriginal)
   this.getTopRatedMovies();
 }
 }

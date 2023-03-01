@@ -5,6 +5,7 @@
 }
 .body1 {
     text-align: center;
+    visibility: hidden;
 }
 .passed {
     text-align: center;
