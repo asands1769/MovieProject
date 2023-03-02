@@ -69,7 +69,6 @@ populateQuizQuestions(){
   document.getElementById("buttons").style.visibility = "visible";
   document.getElementById("test").style.backgroundColor = "rgb(211, 207, 207)";
   document.getElementById("buttons").style.backgroundColor = "rgb(211, 207, 207)";
-  document.getElementById("Quiz").style.backgroundColor = "rgb(211, 207, 207)";
   let answer0 = document.getElementById("answer0");
   let answer1 = document.getElementById("answer1");
   let answer2 = document.getElementById("answer2");
