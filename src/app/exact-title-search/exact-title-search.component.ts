@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { Movies } from '../movies';
+import { Movies } from '../Movies';
 @Component({
   selector: 'app-exact-title-search',
   templateUrl: './exact-title-search.component.html',

@@ -66,7 +66,6 @@ getQuizQuestions(){
 }
 
 populateQuizQuestions(){
-  document.getElementById("startButton").style.visibility = "hidden";
   document.getElementById("buttons").style.visibility = "visible";
   document.getElementById("test").style.backgroundColor = "rgb(211, 207, 207)";
   document.getElementById("buttons").style.backgroundColor = "rgb(211, 207, 207)";
