@@ -14,6 +14,7 @@ export class MovieQuizComponent implements OnInit {
   randomSelector: number;
   optionsSelected: number;
   testFinished: boolean;
+  startButtonPressed: boolean;
 
   constructor() {
     this.movieQuizListOriginal = [];
@@ -22,12 +23,12 @@ export class MovieQuizComponent implements OnInit {
     this.questionNumber = 0;
     this.testFinished = false;
     this.quizScore = 0;
+    this.startButtonPressed = false;
    }
 
   ngOnInit(): void {
   }
   getTopRatedMovies(){
-
 
     const options = {
       method: 'GET',
@@ -46,8 +47,7 @@ export class MovieQuizComponent implements OnInit {
              this.movieQuizList.push(movies);
          }
          this.movieQuizListOriginal = this.movieQuizList;
-         console.log(this.movieQuizList)
-         console.log(this.movieQuizListOriginal)
+         this.startButtonPressed = true;
          this.getQuizQuestions();
       }.bind(this));
     }.bind(this));

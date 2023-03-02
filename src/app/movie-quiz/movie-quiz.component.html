@@ -1,4 +1,4 @@
-<div id="Quiz">
+<div id="Quiz" *ngIf="!startButtonPressed">
     <div style="text-align: center;">
       <button id="startButton" (click)="getTopRatedMovies()"  class="btn btn-outline-primary">Start!</button>  
     </div>    
