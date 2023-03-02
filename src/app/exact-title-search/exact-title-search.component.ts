@@ -41,7 +41,7 @@ addRating(movieRating){
     let simplifiedRating = movieRating / 10;
     rating.innerHTML = "IMDb Rating: " + simplifiedRating + "/10"
     rating.style.textAlign = "center";
-    rating.style.backgroundColor = "yellow;";
+    // rating.style.backgroundColor = "yellow";
     document.body.appendChild(rating);
 }
 addMovieTitle(movieTitle){
@@ -50,14 +50,14 @@ addMovieTitle(movieTitle){
     title.style.fontWeight = "bold";
     title.style.textDecoration = "underline";
     title.style.textAlign = "center";
-    title.style.backgroundColor = "yellow;";
+    // title.style.backgroundColor = "yellow";
     document.body.appendChild(title);
 }
 addReleaseYear(releaseYear){
   let year = document.createElement("p");
   year.innerHTML = "Year:" + releaseYear;
   year.style.textAlign = "center";
-  year.style.backgroundColor = "yellow;";
+  // year.style.backgroundColor = "yellow";
   document.body.appendChild(year);
 }
 addLists(movie){

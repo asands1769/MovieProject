@@ -68,6 +68,9 @@ getQuizQuestions(){
 populateQuizQuestions(){
   document.getElementById("startButton").style.visibility = "hidden";
   document.getElementById("buttons").style.visibility = "visible";
+  document.getElementById("test").style.backgroundColor = "rgb(211, 207, 207)";
+  document.getElementById("buttons").style.backgroundColor = "rgb(211, 207, 207)";
+  document.getElementById("Quiz").style.backgroundColor = "rgb(211, 207, 207)";
   let answer0 = document.getElementById("answer0");
   let answer1 = document.getElementById("answer1");
   let answer2 = document.getElementById("answer2");
@@ -78,7 +81,7 @@ populateQuizQuestions(){
   answer2.style.width = "800px";
   answer3.style.width = "800px";
   this.randomSelector = Math.floor(Math.random()*4)
-  question.innerHTML = "Which of the following movies match this description: \n" + this.movieQuestions[this.questionNumber].description;
+  question.innerHTML = "Question " + (this.questionNumber + 1) + " of 10." + "  Which of the following movies match this description:   " + this.movieQuestions[this.questionNumber].description;
   answer0.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
   answer1.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;
   answer2.innerHTML = this.movieQuizList[Math.floor(Math.random()*80)].title;

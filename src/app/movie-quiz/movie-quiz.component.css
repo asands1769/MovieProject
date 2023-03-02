@@ -1,3 +1,4 @@
+
 .Question {
     text-align: center;
     font-size: medium;
@@ -8,12 +9,30 @@
     visibility: hidden;
 }
 .passed {
+    background-color: rgb(211, 207, 207);
     text-align: center;
-    color: rgb(86, 255, 95);
+    color: rgb(39, 230, 103);
     font-weight: bolder;
 }
 .failed{
+    background-color:rgb(211, 207, 207);
     text-align: center;
     color:rgb(255, 34, 34);
     font-weight:bolder
+}
+.btn-outline-primary {
+    width: 400px;
+    height: 100px;
+    padding-top: 9px;
+    font-size:xx-large;
+}
+.btn-danger {
+    width: 400px;
+    height: 100px;
+    font-size:xx-large;
+}
+.btn-success {
+    width:400px; 
+    height:100px;
+    font-size:xx-large;
 }
